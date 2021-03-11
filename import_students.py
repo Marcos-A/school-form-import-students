@@ -20,7 +20,7 @@ def insert_esobtx_students_data(input_file):
             surname = student['Cognoms']
             # ESO-Batxillerat students real classgroup is ignored, it's set to their level instead
             group_id = get_group_id(student['Nivell'])
-
+            # ESO-Batxillerat students only evaluate "Centre"
             enrolled_subjects = 'Centre'
 
             insert_student(email, name, surname, group_id, enrolled_subjects)
@@ -79,7 +79,7 @@ def insert_student_enrolled_subjects_data(student_id, group_id, enrolled_subject
     if ',' in enrolled_subjects:
         for subject_code in enrolled_subjects.split(','):
             insert_subject_student(student_id, subject_code, degree_id)
-    # Students with onse single subject to evaluate
+    # Students with one single enrolled subject to evaluate
     else:
         subject_code = enrolled_subjects
         insert_subject_student(student_id, subject_code, degree_id)
