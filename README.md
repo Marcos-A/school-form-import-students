@@ -32,7 +32,7 @@ cf_students.csv file
 ```
 contains the info about CF students
 
-header: ALUMNE,CORREU,CICLE,GRUP,MP01,MP02,MP03,MP04,MP05,MP06,MP07,MP08,MP09,MP10,MP11,MP12,MP13,MP14,MP15
+header: ALUMNE,CORREU,CICLE,MP01,MP02,MP03,MP04,MP05,MP06,MP07,MP08,MP09,MP10,MP11,MP12,MP13,MP14,MP15
 
 MP columnes must contain 'X' to determine if the student is enrolled.
 ```
