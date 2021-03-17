@@ -2,7 +2,6 @@ from config import config
 import csv
 import psycopg2
 import os
-import sys
 from query_master import *
 
 
@@ -64,7 +63,7 @@ def insert_student(email, name, surname, group_id, enrolled_subjects):
             cursor.close()
             conn.commit()
         except (Exception, psycopg2.DatabaseError) as error:
-            print(error)
+            catch_exception(error)
         finally:
             if conn is not None:
                 conn.close()
@@ -103,15 +102,10 @@ def insert_subject_student(student_id, subject_code, degree_id):
         cursor.close()
         conn.commit()
     except (Exception, psycopg2.DatabaseError) as error:
-        print(error)
+        catch_exception(error)
     finally:
         if conn is not None:
             conn.close()
-
-
-def catch_exception(e):    
-    print(str(e))    
-    sys.exit()
 
 
 def succeed():
@@ -119,6 +113,7 @@ def succeed():
 
 
 if __name__ == '__main__':
+    print('\033[93m' + 'Importing students to database. This process may take a while.' + '\033[0m')
     if os.path.exists(os.path.join(os.getcwd(), CF_FILE)):
         print("\u200a\u200aInserting Cicles Formatius students data...", end=" ")
         try:

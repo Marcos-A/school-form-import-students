@@ -14,7 +14,7 @@ sudo apt install python3-pip
 pip3 install psycopg2-binary
 ```
 
-2. Set up your "database.ini" file and place it in the project's root folder:
+2. Set up your "database.ini" file and place it in the project's root folder. Note the schema should be set to "master" as seen here:
 
 ```
 [postgresql]
@@ -23,7 +23,7 @@ database=YOUR-DATABASE
 user=YOUR-USER
 password=YOUR-PASSWORD
 port=YOUR-PORT
-options=-c search_path=dbo,YOUR-SCHEMA
+options=-c search_path=dbo,master
 ```
 
 3. Place your 4 data CSV files in the "input" folder following this pattern:
@@ -50,4 +50,4 @@ header: Adreça electrònica,Nom,Cognoms,Nivell,Grup
 ### How to run
 From within the project's root folder, run:
 
-`python3 import_students.py`
+`python3 insert_students.py`
