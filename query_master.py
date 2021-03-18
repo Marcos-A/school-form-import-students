@@ -180,6 +180,10 @@ def get_type_id(type_name):
         return type_id
 
 
+def succeed():
+    print('\033[92m' + 'OK' + '\033[0m')
+
+
 def catch_exception(e):    
     print(str(e))
     print(traceback.format_exc())    

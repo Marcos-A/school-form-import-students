@@ -10,40 +10,48 @@ ESOBTX_FILE = 'input/eso-btx_students.csv'
 
 
 def insert_esobtx_students_data(input_file):
-    with open(input_file, 'r', encoding='utf-8') as students_file:
-        students_reader = csv.DictReader(students_file)
+    try:
+        with open(input_file, 'r', encoding='utf-8') as students_file:
+            students_reader = csv.DictReader(students_file)
 
-        for student in students_reader:
-            email = student['Adreça electrònica']
-            name = student['Nom']
-            surname = student['Cognoms']
-            # ESO-Batxillerat students real classgroup is ignored, it's set to their level instead
-            group_id = get_group_id(student['Nivell'])
-            # ESO-Batxillerat students only evaluate "Centre"
-            enrolled_subjects = 'Centre'
+            for student in students_reader:
+                email = student['Adreça electrònica']
+                name = student['Nom']
+                surname = student['Cognoms']
+                # ESO-Batxillerat students real classgroup is ignored, it's set to their level instead
+                group_id = get_group_id(student['Nivell'])
+                # ESO-Batxillerat students only evaluate "Centre"
+                enrolled_subjects = 'Centre'
 
-            insert_student(email, name, surname, group_id, enrolled_subjects)
+                insert_student(email, name, surname, group_id, enrolled_subjects)
+        succeed()
+    except Exception as e:
+        catch_exception(e)
             
 
 def insert_cf_students_data(input_file):
-    with open(input_file, 'r', encoding='utf-8') as students_file:
-        students_reader = csv.DictReader(students_file)
+    try:
+        with open(input_file, 'r', encoding='utf-8') as students_file:
+            students_reader = csv.DictReader(students_file)
 
-        for student in students_reader:
-            email = student['CORREU']
-            name = student['ALUMNE'].split(', ')[1]
-            surname = student['ALUMNE'].split(', ')[0]
-            group_id = get_group_id(student['GRUP'])
-            enrolled_subjects = ','.join([key for key in student
-                                          if 'mp' in key.lower() and
-                                          student[key].lower() == 'x'])
-            if ('1' in student['GRUP']):
-                enrolled_subjects += ',Tutoria1'
-            elif ('2' in student['GRUP']):
-                enrolled_subjects += ',Tutoria2'
-            enrolled_subjects += ',Centre'
+            for student in students_reader:
+                email = student['CORREU']
+                name = student['ALUMNE'].split(', ')[1]
+                surname = student['ALUMNE'].split(', ')[0]
+                group_id = get_group_id(student['GRUP'])
+                enrolled_subjects = ','.join([key for key in student
+                                              if 'mp' in key.lower() and
+                                              student[key].lower() == 'x'])
+                if ('1' in student['GRUP']):
+                    enrolled_subjects += ',Tutoria1'
+                elif ('2' in student['GRUP']):
+                    enrolled_subjects += ',Tutoria2'
+                enrolled_subjects += ',Centre'
 
-            insert_student(email, name, surname, group_id, enrolled_subjects)
+                insert_student(email, name, surname, group_id, enrolled_subjects)
+        succeed()
+    except Exception as e:
+        catch_exception(e)
 
 
 def insert_student(email, name, surname, group_id, enrolled_subjects):
@@ -108,25 +116,13 @@ def insert_subject_student(student_id, subject_code, degree_id):
             conn.close()
 
 
-def succeed():
-    print('\033[92m' + 'OK' + '\033[0m')
-
-
 if __name__ == '__main__':
-    print('\033[93m' + 'Importing students to database. This process may take a while.' + '\033[0m')
+    print('\033[93m' + 'Inserting students into database. This process may take a while.' + '\033[0m')
     if os.path.exists(os.path.join(os.getcwd(), CF_FILE)):
         print("\u200a\u200aInserting Cicles Formatius students data...", end=" ")
-        try:
-            insert_cf_students_data(CF_FILE)
-            succeed()
-        except Exception as e:
-            catch_exception(e)
+        insert_cf_students_data(CF_FILE)
 
     if os.path.exists(os.path.join(os.getcwd(), ESOBTX_FILE)):
         print("\u200a\u200aInserting ESO-Batxillerat students data...", end=" ")
-        try:
-            insert_esobtx_students_data(ESOBTX_FILE)
-            succeed()
-        except Exception as e:
-            catch_exception(e)
+        insert_esobtx_students_data(ESOBTX_FILE)
     
