@@ -15,7 +15,7 @@ def insert_esobtx_students_data(input_file):
             students_reader = csv.DictReader(students_file)
 
             for student in students_reader:
-                email = student['Adreça electrònica']
+                email = clean_email(student['Adreça electrònica'])
                 name = student['Nom']
                 surname = student['Cognoms']
                 # ESO-Batxillerat students real classgroup is ignored, it's set to their level instead
@@ -35,7 +35,7 @@ def insert_cf_students_data(input_file):
             students_reader = csv.DictReader(students_file)
 
             for student in students_reader:
-                email = student['CORREU']
+                email = clean_email(student['CORREU'])
                 name = student['ALUMNE'].split(', ')[1]
                 surname = student['ALUMNE'].split(', ')[0]
                 group_id = get_group_id(student['GRUP'])
@@ -114,6 +114,10 @@ def insert_subject_student(student_id, subject_code, degree_id):
     finally:
         if conn is not None:
             conn.close()
+
+
+def clean_email(email):
+	return email.replace(' ','')
 
 
 if __name__ == '__main__':
