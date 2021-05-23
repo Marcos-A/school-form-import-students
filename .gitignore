@@ -34,7 +34,6 @@ database.ini
 database*.ini
 input/*
 
-# Keep input folder
-!input/.gitkeep
+# Keep CSV examples
 !input/cf_students.csv
 !input/eso-btx_students.csv
