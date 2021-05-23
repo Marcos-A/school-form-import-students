@@ -36,3 +36,5 @@ input/*
 
 # Keep input folder
 !input/.gitkeep
+!input/cf_students.csv
+!input/eso-btx_students.csv

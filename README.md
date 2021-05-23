@@ -1,7 +1,7 @@
 # school-form-import-students
 Populates the school-form database with the students and their enrolled subjectes information. This step precedes the submission of the form to the students to be answered.
 
-Designed as a helper to set up: [https://github.com/Marcos-A/school-form](https://github.com/Marcos-A/school-form)
+Designed as a helper to set up: [https://github.com/Marcos-A/teaching-stats](https://github.com/Marcos-A/teaching-stats)
 
 ---
 
@@ -26,24 +26,7 @@ port=YOUR-PORT
 options=-c search_path=dbo,master
 ```
 
-3. Place your 4 data CSV files in the "input" folder following this pattern:
-cf_students.csv file
-
-```
-contains the info about CF students
-
-header: ALUMNE,CORREU,GRUP,MP01,MP02,MP03,MP04,MP05,MP06,MP07,MP08,MP09,MP10,MP11,MP12,MP13,MP14,MP15
-
-MP columnes must contain 'X' to determine if the student is enrolled.
-```
-
-eso-batx_students.csv file
-
-```
-contains the info about the ESO and Batxillerat students
-
-header: Adreça electrònica,Nom,Cognoms,Nivell,Grup
-```
+3. Replace the content of the "cf_students.csv" and "eso-batx_students.csv" files located at the "input" folder with your own students data.
 
 ---
 
