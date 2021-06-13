@@ -1,7 +1,7 @@
 # school-form-import-students
 Populates the school-form database with the students and their enrolled subjects information. This step precedes the submission of the form to the students to be answered.
 
-Designed as a helper to set up: [https://github.com/Marcos-A/teaching-stats](https://github.com/Marcos-A/teaching-stats)
+Designed as a helper to set up: [https://github.com/Marcos-A/teaching-stats](https://github.com/Marcos-A/teaching-stats).
 
 ---
 
