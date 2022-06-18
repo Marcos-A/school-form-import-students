@@ -8,7 +8,7 @@ def get_degree_id(degree_code):
     sql = """
             SELECT id FROM degree
             WHERE code = %s;
-         """
+          """
     conn = None
     try:
         params = config()
@@ -52,7 +52,7 @@ def get_group_id(group_name):
     sql = """
             SELECT id FROM "group"
             WHERE name = %s;
-         """
+          """
     conn = None
     try:
         params = config()
@@ -74,7 +74,7 @@ def get_group_degree_id(group_id):
     sql = """
             SELECT degree_id FROM "group"
             WHERE id = %s;
-        """
+          """
     conn = None
     try:
         params = config()
@@ -96,7 +96,7 @@ def get_level_id(level_code):
     sql = """
             SELECT id FROM level
             WHERE code = %s;
-         """
+          """
     conn = None
     try:
         params = config()
@@ -140,7 +140,7 @@ def get_topic_id(topic_name):
     sql = """
             SELECT id FROM topic
             WHERE name = %s;
-         """
+          """
     conn = None
     try:
         params = config()
@@ -162,7 +162,7 @@ def get_type_id(type_name):
     sql = """
             SELECT id FROM type
             WHERE name = %s;
-         """
+          """
     conn = None
     try:
         params = config()

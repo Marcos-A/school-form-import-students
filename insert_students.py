@@ -42,10 +42,12 @@ def insert_cf_students_data(input_file):
                 enrolled_subjects = ','.join([key for key in student
                                               if 'mp' in key.lower() and
                                               student[key].lower() == 'x'])
+                if len(enrolled_subjects) != 0:
+                    enrolled_subjects += ','
                 if ('1' in student['GRUP']):
-                    enrolled_subjects += ',Tutoria1'
+                    enrolled_subjects += 'Tutoria1'
                 elif ('2' in student['GRUP']):
-                    enrolled_subjects += ',Tutoria2'
+                    enrolled_subjects += 'Tutoria2'
                 enrolled_subjects += ',Centre'
 
                 insert_student(email, name, surname, group_id, enrolled_subjects)
